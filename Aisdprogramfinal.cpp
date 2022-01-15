@@ -1,37 +1,4 @@
-#include <iostream>
 
-using namespace std;
-
-const int MAXINT = 2147483647; 
-
-
-struct slistEl
-{
-    slistEl* next;
-    int v, w;
-};
-
-
-int m, n;      // Liczba krawędzi i wierzchołków w grafie
-slistEl** A;  // Tablica dynamiczna list sąsiedztwa
-long long* d; // Tablica kosztów dojścia
-int* p;       // Tablica poprzedników
-
-
-bool BF(int v)
-{
-    int i, x;
-    bool test;
-    slistEl* pv;
-
-    d[v] = 0;               
-    for (i = 1; i < n; i++)   
-    {
-        test = true;             
-        for (x = 0; x < n; x++) 
-            for (pv = A[x]; pv; pv = pv->next) 
-                if (d[pv->v] > d[x] + pv->w) 
-                {
                     test = false;     
                     d[pv->v] = d[x] + pv->w; 
                     p[pv->v] = x;   
@@ -136,59 +103,4 @@ int main()
             }
             else if (a[i] == pom)
             {
-                a[i] = 0;
-            };
-            if (t[i] > a[i])
-            {
-                c[i] = a[i];
-                a[i] = t[i];
-                t[i] = c[i];
 
-            }
-            cout << endl;
-
-
-
-        }
-        system("cls");
-
-
-        suma = 0;
-
-        // Usuwamy struktury dynamiczne
-
-        for (i = 0; i < n; i++)
-        {
-            pv = A[i];
-            while (pv)
-            {
-                rv = pv;
-                pv = pv->next;
-                delete rv;
-            }
-        }
-
-        delete[] A;
-        delete[] d;
-        delete[] p;
-
-    }
-    int final;
-    final = wynik[0];
-
-    int score = 0;;
-
-
-    for (int i = 1; i < m; i++)
-    {
-        if (final > wynik[i])
-        {
-            final = wynik[i];
-            score = i;
-        }
-      
-
-        cout << score;
-        return 0;
-    }
-}
